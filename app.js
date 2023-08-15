@@ -15,14 +15,25 @@ app.get('/allUsers', (req, res) => {
 
 app.get('/oneUser/:id', (req,res) => {
     const id = req.params.id;
-    const chosenUser = "";
-    for (let i =0; i < usersArray.length; i++) {
-        if (usersArray[i].id == id) {
-            console.log(usersArray[i]);
+    let chosenUser = "";
+    for (let i = 0; i < usersArray.length; i++) {
+        if (id === usersArray[i].id) {
             chosenUser = usersArray[i]
         }
     }
-    res.send(chosenUser); // לא הספקתי לסיים
+    res.send(chosenUser);
+})
+
+app.delete('/deleteUser/:id', (req,res) => {
+    const id = req.params.id;
+    res.send("hattt");
+    let chosenUser = "";
+    for (let i = 0; i < usersArray.length; i++) {
+        if (id === usersArray[i].id) {
+            delete usersArray[i];
+        }
+    }
+    res.send("the user deleted");  //לא גמור
 })
 
 app.listen(port, () => {
